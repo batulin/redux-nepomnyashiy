@@ -15,8 +15,13 @@ const todoSlice = createSlice({
                 completed: false
             })
         },
-        removeTogo(state, action){},
-        toggleTodoComplete(state, action){}
+        removeTogo(state, action){
+            state.todos = state.todos.filter(todo => todo.id !== action.payload.id);
+        },
+        toggleTodoComplete(state, action){
+            const toogledTodo = state.todos.find(todo => todo.id === action.payload.id);
+            toogledTodo.completed = !toogledTodo.completed;
+        }
     }
 });
 
